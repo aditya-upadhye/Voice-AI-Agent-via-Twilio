@@ -1,0 +1,10 @@
+fastapi
+google-api-core
+google-auth
+google-cloud-core
+google-cloud-speech
+google-cloud-storage
+python-dotenv
+requests
+twilio
+uvicorn
