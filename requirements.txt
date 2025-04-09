@@ -5,6 +5,7 @@ google-cloud-core
 google-cloud-speech
 google-cloud-storage
 python-dotenv
+python-multipart
 requests
 twilio
 uvicorn

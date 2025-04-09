@@ -1,0 +1,12 @@
+runtime: python311
+
+entrypoint: uvicorn app.main:app --host 0.0.0.0 --port 8080
+
+service_account: voice-agent@second-sandbox-456114-j8.iam.gserviceaccount.com
+
+env_variables:
+  GCP_PROJECT:
+  GCS_BUCKET:
+  TWILIO_ACCOUNT_SID:
+  TWILIO_AUTH_TOKEN:
+  GROQ_API_KEY:

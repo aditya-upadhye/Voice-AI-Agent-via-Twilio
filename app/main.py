@@ -53,7 +53,7 @@ async def recording_handler(request: Request):
     if not recording_url:
         return Response("No recording received", status_code=400)
 
-    audio_path = f"temp/{call_sid}.wav"
+    audio_path = f"/tmp/{call_sid}.wav"
     
     download_successful = download_twilio_audio(recording_url, audio_path)
 
@@ -101,11 +101,10 @@ async def status_callback(request: Request):
     logging.info(f"Call SID: {call_sid}, Status: {call_status}")
     if call_status == "completed":
         logging.info(f"Call {call_sid} completed.")
-        audio_path = f"temp/{call_sid}.wav"  
+        audio_path = f"/tmp/{call_sid}.wav"  
         try:
-            # Corrected to pass folder
-            upload_to_gcs(audio_path, session_transcript, call_sid, "recordings")
-            upload_to_gcs(audio_path, session_transcript, call_sid, "transcripts")
+            upload_to_gcs(audio_path, None, call_sid, "recordings")
+            upload_to_gcs(None, session_transcript, call_sid, "transcripts")
         except Exception as e:
             logging.error(f"Error uploading transcript for Call {call_sid}: {str(e)}")
 
