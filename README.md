@@ -26,13 +26,13 @@
 ```
 app/
 │
-├── agentsdk.py # Handles communication with the Groq LLaMA model
-├── gcs_utils.py # Uploads audio and transcript to Google Cloud Storage
-├── transcriber.py # Google STT transcription logic
-├── twilio_utils.py # Twilio-specific helper functions
-main.py # FastAPI application entry point
-requirements.txt # Python dependencies
-.env # Environment variables (local use)
+├── agentsdk.py           # Handles communication with the Groq LLaMA model
+├── gcs_utils.py          # Uploads audio and transcript to Google Cloud Storage
+├── transcriber.py        # Google STT transcription logic
+├── twilio_utils.py       # Twilio-specific helper functions
+├── main.py               # FastAPI application entry point
+requirements.txt          # Python dependencies
+.env                      # Environment variables (local use)
 ```
 
 ## How It Works
