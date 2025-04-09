@@ -1,9 +1,11 @@
 from google.cloud import storage
+import os
+from dotenv import load_dotenv
 
-bucket_name = "<your-bucket-name>"
+load_dotenv()
+bucket_name = os.getenv("GCS_BUCKET") 
 
-
-def upload_to_gcs(local_file_path: str, content: str, file_name: str, bucket_name: str, folder: str):
+def upload_to_gcs(local_file_path: str, content: str, file_name: str, folder: str):
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
     

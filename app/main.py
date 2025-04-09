@@ -16,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
-GCS_BUCKET_NAME = os.getenv("GCS_BUCKET_NAME")
+GCS_BUCKET = os.getenv("GCS_BUCKET")
 
 session_transcript = ""
 
@@ -71,7 +71,9 @@ async def recording_handler(request: Request):
         if "goodbye" in transcript.lower() or "bye" in transcript.lower() or "end call" in transcript.lower():
             response.say("Thank you for calling. Goodbye!", voice='alice')
             response.hangup()
-            upload_to_gcs(audio_path, session_transcript, call_sid)
+            # Corrected to pass folder
+            upload_to_gcs(audio_path, session_transcript, call_sid, "recordings")
+            upload_to_gcs(audio_path, session_transcript, call_sid, "transcripts")
             
         else:
             response.say(response_json, voice='alice')
@@ -101,8 +103,9 @@ async def status_callback(request: Request):
         logging.info(f"Call {call_sid} completed.")
         audio_path = f"temp/{call_sid}.wav"  
         try:
-            upload_to_gcs(audio_path, session_transcript, call_sid)
-            logging.info(f"Transcript uploaded for Call {call_sid}.")
+            # Corrected to pass folder
+            upload_to_gcs(audio_path, session_transcript, call_sid, "recordings")
+            upload_to_gcs(audio_path, session_transcript, call_sid, "transcripts")
         except Exception as e:
             logging.error(f"Error uploading transcript for Call {call_sid}: {str(e)}")
 

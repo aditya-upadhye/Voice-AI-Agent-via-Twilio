@@ -10,7 +10,7 @@ load_dotenv()
 
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
-GCS_BUCKET_NAME = os.getenv("GCS_BUCKET_NAME")
+GCS_BUCKET = os.getenv("GCS_BUCKET")
 
 def download_twilio_audio(recording_url: str, save_path: str):
     """Download audio recording from Twilio."""
